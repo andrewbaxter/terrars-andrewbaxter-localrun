@@ -1,6 +1,6 @@
 {
     "provider": "andrewbaxter/localrun",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "dest": "src/localrun",
 	"feature_gate": "Cargo.toml"
 }
