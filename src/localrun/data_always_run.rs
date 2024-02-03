@@ -5,7 +5,7 @@ use terrars::*;
 use super::provider::ProviderLocalrun;
 
 #[derive(Serialize)]
-struct DataRunData {
+struct DataAlwaysRunData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
     depends_on: Vec<String>,
     #[serde(skip_serializing_if = "SerdeSkipDefault::is_default")]
@@ -21,16 +21,16 @@ struct DataRunData {
     working_dir: Option<PrimField<String>>,
 }
 
-struct DataRun_ {
+struct DataAlwaysRun_ {
     shared: StackShared,
     tf_id: String,
-    data: RefCell<DataRunData>,
+    data: RefCell<DataAlwaysRunData>,
 }
 
 #[derive(Clone)]
-pub struct DataRun(Rc<DataRun_>);
+pub struct DataAlwaysRun(Rc<DataAlwaysRun_>);
 
-impl DataRun {
+impl DataAlwaysRun {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
@@ -89,16 +89,16 @@ impl DataRun {
     }
 }
 
-impl Referable for DataRun {
+impl Referable for DataAlwaysRun {
     fn extract_ref(&self) -> String {
         format!("data.{}.{}", self.0.extract_datasource_type(), self.0.extract_tf_id())
     }
 }
 
-impl Datasource for DataRun { }
+impl Datasource for DataAlwaysRun { }
 
-impl ToListMappable for DataRun {
-    type O = ListRef<DataRunRef>;
+impl ToListMappable for DataAlwaysRun {
+    type O = ListRef<DataAlwaysRunRef>;
 
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
@@ -106,9 +106,9 @@ impl ToListMappable for DataRun {
     }
 }
 
-impl Datasource_ for DataRun_ {
+impl Datasource_ for DataAlwaysRun_ {
     fn extract_datasource_type(&self) -> String {
-        "localrun_run".into()
+        "localrun_always_run".into()
     }
 
     fn extract_tf_id(&self) -> String {
@@ -120,18 +120,18 @@ impl Datasource_ for DataRun_ {
     }
 }
 
-pub struct BuildDataRun {
+pub struct BuildDataAlwaysRun {
     pub tf_id: String,
     #[doc= "Command to run; first element is executable, remaining elements are arguments"]
     pub command: ListField<PrimField<String>>,
 }
 
-impl BuildDataRun {
-    pub fn build(self, stack: &mut Stack) -> DataRun {
-        let out = DataRun(Rc::new(DataRun_ {
+impl BuildDataAlwaysRun {
+    pub fn build(self, stack: &mut Stack) -> DataAlwaysRun {
+        let out = DataAlwaysRun(Rc::new(DataAlwaysRun_ {
             shared: stack.shared.clone(),
             tf_id: self.tf_id,
-            data: RefCell::new(DataRunData {
+            data: RefCell::new(DataAlwaysRunData {
                 depends_on: core::default::Default::default(),
                 provider: None,
                 for_each: None,
@@ -146,12 +146,12 @@ impl BuildDataRun {
     }
 }
 
-pub struct DataRunRef {
+pub struct DataAlwaysRunRef {
     shared: StackShared,
     base: String,
 }
 
-impl Ref for DataRunRef {
+impl Ref for DataAlwaysRunRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self {
             shared: shared,
@@ -160,7 +160,7 @@ impl Ref for DataRunRef {
     }
 }
 
-impl DataRunRef {
+impl DataAlwaysRunRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }

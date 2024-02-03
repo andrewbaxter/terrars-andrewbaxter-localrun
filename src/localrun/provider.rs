@@ -39,7 +39,7 @@ impl Provider for ProviderLocalrun_ {
     fn extract_provider_type(&self) -> serde_json::Value {
         serde_json::json!({
             "source": "andrewbaxter/localrun",
-            "version": "0.0.9",
+            "version": "0.1.0",
         })
     }
 
