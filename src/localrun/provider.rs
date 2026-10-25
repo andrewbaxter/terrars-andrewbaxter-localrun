@@ -1,13 +1,15 @@
+#![allow(non_camel_case_types)]
+
 use serde::Serialize;
 
 #[derive(Serialize)]
-struct ProviderLocalrunData {
+struct ProviderLocalrunData_ {
     #[serde(skip_serializing_if = "std::option::Option::is_none")]
     alias: std::option::Option<std::string::String>,
 }
 
 struct ProviderLocalrun_ {
-    data: std::cell::RefCell<ProviderLocalrunData>,
+    data: std::cell::RefCell<ProviderLocalrunData_>,
 }
 
 pub struct ProviderLocalrun(std::rc::Rc<ProviderLocalrun_>);
@@ -53,7 +55,7 @@ impl BuildProviderLocalrun {
             ProviderLocalrun(
                 std::rc::Rc::new(
                     ProviderLocalrun_ {
-                        data: std::cell::RefCell::new(ProviderLocalrunData { alias: std::option::Option::None }),
+                        data: std::cell::RefCell::new(ProviderLocalrunData_ { alias: std::option::Option::None }),
                     },
                 ),
             );
